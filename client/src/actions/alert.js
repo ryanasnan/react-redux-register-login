@@ -1,4 +1,4 @@
-import { SET_ALERT } from './types';
+import { SET_ALERT, CLEAR_ALERT } from './types';
 
 export const setAlert = (message, type) => dispatch =>
 	dispatch({
@@ -9,7 +9,7 @@ export const setAlert = (message, type) => dispatch =>
 
 export const clearAlert = () => dispatch => 
 	dispatch({
-		type: SET_ALERT,
+		type: CLEAR_ALERT,
 		payload: {}
 	});
 ;

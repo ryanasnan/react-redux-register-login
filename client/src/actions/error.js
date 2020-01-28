@@ -1,4 +1,4 @@
-import { SET_ERRORS } from './types';
+import { SET_ERRORS, CLEAR_ERRORS } from './types';
 
 export const setErrors = (errors) => dispatch => 
 	dispatch({
@@ -8,7 +8,7 @@ export const setErrors = (errors) => dispatch =>
 
 export const clearErrors = () => dispatch => 
 	dispatch({
-		type: SET_ERRORS,
+		type: CLEAR_ERRORS,
 		payload: {}
 	});
 ;

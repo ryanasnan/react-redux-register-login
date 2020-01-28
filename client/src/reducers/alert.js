@@ -1,4 +1,4 @@
-import { SET_ALERT } from '../actions/types';
+import { SET_ALERT, CLEAR_ALERT } from '../actions/types';
 
 const initialState = {};
 
@@ -7,6 +7,8 @@ export default function(state = initialState, action) {
 
   switch (type) {
     case SET_ALERT:
+      return payload;
+    case CLEAR_ALERT:
       return payload;
     default:
       return state;
