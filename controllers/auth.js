@@ -1,19 +1,11 @@
 const User = require('../models/User');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middlewares/async');
-const validatePostInput = require('../middlewares/validation/register');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
 exports.register = asyncHandler(async (req, res, next) => {
 	const { name, email, password } = req.body;
-
-	const { errors, isValid } = validatePostInput(req.body);
-	// check input validation
-	if (!isValid) {
-		// console.log(errors);
-		return next(new ErrorResponse("Error Input Validation", 400, errors));
-	}
 
 	const avatar = "https://ui-avatars.com/api/?size=256&name=" + name.split(' ').join('+');
 
@@ -35,13 +27,6 @@ exports.register = asyncHandler(async (req, res, next) => {
 
 exports.login = asyncHandler(async (req, res, next) => {
 	const { email, password } = req.body;
-
-	const { errors, isValid } = validatePostInput(req.body);
-	// check input validation
-	if (!isValid) {
-		// console.log(errors);
-		return next(new ErrorResponse("Error Input Validation", 400, errors));
-	}
 
 	const user = await User.findOne({ email: email });
 	if (user) {
@@ -84,7 +69,6 @@ const sendTokenResponse = (user, statusCode, res) => {
 };
 
 exports.getMe = asyncHandler(async (req, res, next) => {
-	console.log(req.user);
 	const user = await User.findById(req.user.id);
 
 	res.status(200).json({
